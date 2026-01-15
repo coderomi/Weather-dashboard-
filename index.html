@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Next-Level Weather Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="day mild">
+    <!-- Day/Night Toggle -->
+    <div class="toggle-container">
+      <label class="toggle">
+        <input type="checkbox" id="themeToggle" />
+        <span class="slider"></span>
+      </label>
+      <span class="toggle-label">Day / Night</span>
+    </div>
+
+    <!-- Animated Background Circles -->
+    <div class="animated-bg">
+      <div class="bg-circle c1"></div>
+      <div class="bg-circle c2"></div>
+      <div class="bg-circle c3"></div>
+      <div class="bg-circle c4"></div>
+      <div class="bg-circle c5"></div>
+    </div>
+
+    <!-- Main Weather Card -->
+    <div class="card main-card">
+      <h1 class="title">Weather Dashboard</h1>
+      <div class="search">
+        <input id="cityInput" type="text" placeholder="Enter city name" />
+        <button id="searchBtn" class="search-btn">
+          <div class="magnifier"></div>
+        </button>
+      </div>
+      <div class="error"><p>City not found</p></div>
+      <div class="weather">
+        <div class="weather-info">
+          <div class="icon-container">
+            <div class="weather-icon"></div>
+          </div>
+          <h1 class="temp">--℃</h1>
+          <h2 class="city">City, Country</h2>
+          <p class="condition">---</p>
+          <div class="details">
+            <div class="col">
+              <img
+                src="images/humidity.png"
+                class="detail-icon"
+                alt="Humidity"
+              />
+              <p class="humidity">--%</p>
+              <span>Humidity</span>
+            </div>
+            <div class="col">
+              <img src="images/wind.png" class="detail-icon" alt="Wind" />
+              <p class="wind">-- km/h</p>
+              <span>Wind</span>
+            </div>
+            <div class="col">
+              <img
+                src="images/pressure.png"
+                class="detail-icon"
+                alt="Pressure"
+              />
+              <p class="pressure">-- hPa</p>
+              <span>Pressure</span>
+            </div>
+            <div class="col">
+              <img
+                src="images/visibility.png"
+                class="detail-icon"
+                alt="Visibility"
+              />
+              <p class="visibility">-- km</p>
+              <span>Visibility</span>
+            </div>
+            <div class="col">
+              <img
+                src="images/thermometer.png"
+                class="detail-icon"
+                alt="Feels Like"
+              />
+              <p class="feels_like">--℃</p>
+              <span>Feels Like</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sticky Balls inside main card -->
+      <div class="card-bg-balls">
+        <img src="images/sun.png" class="ball b1" />
+        <img src="images/clouds.png" class="ball b2" />
+        <img src="images/rain.png" class="ball b3" />
+        <img src="images/snow.png" class="ball b4" />
+        <img src="images/wind.png" class="ball b5" />
+      </div>
+    </div>
+
+    <!-- Bottom Carousel -->
+    <section class="carousel-section">
+      <h3>Other Cities</h3>
+      <div class="carousel-wrapper" id="carousel"></div>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>

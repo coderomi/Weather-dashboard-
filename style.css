@@ -1,0 +1,313 @@
+/* =========================
+   Reset & Base
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Poppins, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  transition: all 0.5s;
+}
+
+body.day { color: #333; }
+body.night { color: #f0f0f0; }
+
+/* =========================
+   Toggle Switch
+========================= */
+.toggle-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 100;
+}
+
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #ccc;
+  border-radius: 26px;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px; width: 22px;
+  left: 2px; bottom: 2px;
+  background: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+input:checked + .slider { background: #555; }
+input:checked + .slider:before { transform: translateX(24px); }
+
+.toggle-label { font-size: 14px; }
+
+/* =========================
+   Animated Background Circles
+========================= */
+.animated-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  overflow: hidden;
+  z-index: -2;
+}
+
+.bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.2;
+  animation: floatBG 30s infinite linear;
+}
+
+.c1 { width: 180px; height: 180px; background: linear-gradient(45deg,#ffd166,#ff6b6b); top: 5%; left: 10%; }
+.c2 { width: 120px; height: 120px; background: linear-gradient(45deg,#06d6a0,#118ab2); top: 25%; left: 75%; }
+.c3 { width: 200px; height: 200px; background: linear-gradient(45deg,#8338ec,#ff006e); top: 50%; left: 30%; }
+.c4 { width: 140px; height: 140px; background: linear-gradient(45deg,#ffbe0b,#fb5607); top: 70%; left: 85%; }
+.c5 { width: 80px; height: 80px; background: linear-gradient(45deg,#3a86ff,#8338ec); top: 40%; left: 50%; }
+
+@keyframes floatBG {
+  0% { transform: translate(0,0); }
+  50% { transform: translate(50px,-50px); }
+  100% { transform: translate(0,0); }
+}
+
+/* =========================
+   Background Gradients by Weather
+========================= */
+body.day.mild { background: linear-gradient(135deg,#ffd194,#ff9a9e); }
+body.day.hot { background: linear-gradient(135deg,#ff6f3c,#ffb199); }
+body.day.cold { background: linear-gradient(135deg,#c7ecee,#d6cadd); }
+body.day.very-hot { background: linear-gradient(135deg,#e63946,#f1fa3c); }
+
+body.night.mild { background: linear-gradient(135deg,#4d4d5c,#7f7fa0); }
+body.night.hot { background: linear-gradient(135deg,#993333,#cc6666); }
+body.night.cold { background: linear-gradient(135deg,#1f3b4d,#3a6073); }
+body.night.very-hot { background: linear-gradient(135deg,#8b0000,#ff4500); }
+
+/* =========================
+   Main Card
+========================= */
+.card {
+  width: min(95%, 1000px);
+  margin: 80px auto;
+  padding: 40px;
+  border-radius: 25px;
+  background: rgba(255,255,255,0.35);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+
+body.night .card { background: rgba(50,50,60,0.35); }
+
+.title {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 25px;
+}
+
+/* Search Bar */
+.search {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.search input {
+  flex: 1;
+  padding: 16px;
+  border-radius: 30px;
+  border: none;
+  font-size: 16px;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  transition: 0.4s;
+}
+
+.search input:focus { outline: none; box-shadow: 0 0 20px rgba(255,255,255,0.4); }
+
+.search-btn {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg,#ff9a9e,#ff6f3c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+
+.search-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+}
+
+.magnifier {
+  position: relative;
+  width: 20px; height: 20px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+}
+
+.magnifier::after {
+  content: "";
+  position: absolute;
+  width: 10px; height: 3px;
+  background: #fff;
+  transform: rotate(45deg);
+  top: 14px; left: 12px;
+  border-radius: 2px;
+}
+
+/* =========================
+   Weather Info
+========================= */
+.weather { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; margin-top: 20px; gap: 30px; }
+.weather-info { flex: 1; min-width: 320px; }
+.icon-container { width: 100px; height: 100px; margin: 0 auto 10px; position: relative; }
+.weather-icon {
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  /* animation: rotateIcon 10s linear infinite; */
+}
+.temp { font-size: 60px; margin-top: 5px; animation: tempPulse 2s infinite; }
+.city { font-size: 30px; }
+.condition { font-size: 18px; opacity: 0.8; text-transform: capitalize; }
+.details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 25px;
+  gap: 15px;
+}
+.col { display: flex; flex-direction: column; align-items: center; min-width: 100px; }
+.col p { font-size: 18px; font-weight: 700; margin-top: 5px; }
+.col span { opacity: 0.8; font-size: 13px; margin-top: 2px; }
+.detail-icon { width: 25px; height: 25px; }
+
+/* =========================
+   Animated Balls in Main Card
+========================= */
+.card-bg-balls {
+  position: absolute;
+  top: 10px; left: 10px;
+  width: 100%; height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.card-bg-balls .ball {
+  position: absolute;
+  width: 50px; height: 50px;
+  opacity: 0.3;
+}
+
+.b1 { top: 20%; left: 5%; }
+.b2 { top: 40%; left: 20%; }
+.b3 { top: 60%; left: 35%; }
+.b4 { top: 25%; left: 55%; }
+.b5 { top: 10%; left: 75%; }
+
+/* =========================
+   Bottom Carousel Horizontal
+========================= */
+.carousel-section {
+  width: 100%;
+  margin-top: 50px;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-section h3 {
+  margin-left: 20px;
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+.carousel-wrapper {
+  display: flex;
+  gap: 15px;
+  animation: scrollCarousel 50s linear infinite;
+}
+
+.carousel-wrapper::-webkit-scrollbar { display: none; }
+.carousel-wrapper { -ms-overflow-style: none; scrollbar-width: none; }
+
+.weather-card {
+  flex: 0 0 auto;
+  width: 280px;
+  padding: 18px;
+  border-radius: 22px;
+  background: rgba(255,255,255,0.35);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.75s ease, box-shadow 0.35s ease;
+}
+
+body.night .weather-card { background: rgba(60,60,70,0.35); color: #f0f0f0; }
+
+.weather-card h4 { font-size: 18px; margin-bottom: 10px; }
+.weather-card img { width: 35px; height: 35px; margin-bottom: 5px; }
+.weather-card p { font-size: 16px; font-weight: 600; margin-bottom: 5px; }
+.weather-card span { font-size: 13px; opacity: 0.8; margin-bottom: 2px; }
+.weather-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+/* =========================
+   Animations
+========================= */
+@keyframes rotateIcon { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes tempPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+@keyframes scrollCarousel { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* =========================
+   Responsive
+========================= */
+@media(max-width:768px) {
+  .weather { flex-direction: column; }
+  .details { justify-content: center; }
+  .col { min-width: 80px; }
+  .weather-card { flex: 0 0 200px; }
+}
